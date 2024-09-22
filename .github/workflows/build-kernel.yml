@@ -73,9 +73,11 @@ jobs:
 
       - name: build
         run: |
+          sudo -s << 'EOF'
           cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
           chmod +x ./build_kernel.sh
           source build_kernel.sh
+          EOF
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
       - name: Check the output directory before uploading
