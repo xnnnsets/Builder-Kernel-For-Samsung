@@ -65,7 +65,8 @@ jobs:
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
       - name: Change Permissions
-        run: sudo chmod +x ./build_kernel.sh
+        run: |
+          ls -la ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/toolchain/clang/host/linux-x86/clang-r487747c/
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
 
       - name: List Files
