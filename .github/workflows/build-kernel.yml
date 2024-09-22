@@ -64,6 +64,13 @@ jobs:
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
+      - name: Change Permissions
+        run: sudo chmod +x ./build_kernel.sh
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
+
+      - name: List Files
+        run: ls -la ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
+
       - name: build
         run: |
           cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
