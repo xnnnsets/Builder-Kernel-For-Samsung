@@ -10,15 +10,15 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'sep-15.1/ksu'
+        default: 'muach'
       NAME_FOLDER:
         description: 'NAME_FOLDER'
         required: true
         default: 'kernel_a34x'
-      BUILD_TARGET:
-        description: 'BUILD_TARGET'
+      DEVICE_NAME:
+        description: 'DEVICE_NAME'
         required: true
-        default: 'recovery'
+        default: 'samsung_a34x'
 
 jobs:
   build:
@@ -96,13 +96,12 @@ jobs:
         with:
           files: |
             ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image.tar.gz
+            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image.gz
             ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/.config
           name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
           tag_name: ${{ github.run_id }}
           body: |
-            Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
+            Manifest: ${{ github.event.inputs.NAME_FOLDER }}
             Device: ${{ github.event.inputs.DEVICE_NAME }}
-            Target: ${{ github.event.inputs.BUILD_TARGET }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
