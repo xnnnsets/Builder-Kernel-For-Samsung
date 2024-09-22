@@ -30,8 +30,8 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v3
 
-#      - name: Cleanup
-#        uses: rokibhasansagar/slimhub_actions@main
+      - name: Cleanup
+        uses: rokibhasansagar/slimhub_actions@main
 
       - name: Initialize workspace
         run: |
