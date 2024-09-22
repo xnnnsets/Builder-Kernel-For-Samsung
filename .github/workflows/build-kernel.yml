@@ -61,6 +61,7 @@ jobs:
           mkdir -p /toolchain/clang/host/linux-x86/clang-r487747c
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C /toolchain/clang/host/linux-x86/clang-r487747c/
+          tar -xvzf clang-r487747c.tar.gz
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
