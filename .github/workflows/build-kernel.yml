@@ -54,8 +54,7 @@ jobs:
         run: |
           cd ${{ steps.pwd.outputs.workspace-folder }}
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }}
-          mkdir -p /${{ github.event.inputs.NAME_FOLDER }}/toolchain/clang/host/linux-x86/clang-r487747c
-          sleep 15
+          sudo mkdir -p /${{ github.event.inputs.NAME_FOLDER }}/toolchain/clang/host/linux-x86/clang-r487747c
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C /${{ github.event.inputs.NAME_FOLDER }}/toolchain/clang/host/linux-x86/clang-r487747c/
           working-directory: ${{ steps.pwd.outputs.workspace-folder }}
