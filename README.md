@@ -6,5 +6,5 @@
 ***
 * tested in source kernel [a34x](https://github.com/xnnnsets/android_kernel_samsung_a34x)
 ***
-*[Fed2782](https://github.com/Fede2782)
+* [Fed2782](https://github.com/Fede2782)
 ****
