@@ -1,9 +1,8 @@
-name: Recovery Build
+name: kernel Build
 
 on:
   workflow_dispatch:
     inputs:
-      SYNC_URL:
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
@@ -31,8 +30,8 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v3
 
-      - name: Cleanup
-        uses: rokibhasansagar/slimhub_actions@main
+#      - name: Cleanup
+#        uses: rokibhasansagar/slimhub_actions@main
 
       - name: Initialize workspace
         run: |
@@ -41,14 +40,9 @@ jobs:
           echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
         id: pwd
 
-      - name: Prepare the build environment and install
+      - name: apt installer
         run: |
-          sudo apt install git aria2 build-essential -y
-          git clone https://gitlab.com/OrangeFox/misc/scripts
-          cd scripts
-          sudo bash setup/android_build_env.sh
-          sed -i 's/cd -/cd ../g' setup/install_android_sdk.sh
-          sudo bash setup/install_android_sdk.sh
+          sudo apt install -y git aria2 bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev --install-recommends
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
       - name: Set Swap Space
@@ -56,14 +50,21 @@ jobs:
         with:
           swap-size-gb: 12
 
-      - name: Clone device tree and build
+      - name: Clone device tree
         run: |
           cd ${{ steps.pwd.outputs.workspace-folder }}
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }}
-          chmod +x ./${{ github.event.inputs.NAME_FOLDER }}/build_kernel.sh
-          source ${{ github.event.inputs.NAME_FOLDER }}/build_kernel.sh
-        working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+          working-directory: ${{ steps.pwd.outputs.workspace-folder }}
         continue-on-error: true
+        
+      - name: build
+        run: |
+          cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
+          chmod +x ./build_kernel.sh
+          source build_kernel.sh
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
+
 
       - name: Check the output directory before uploading
         run: |
