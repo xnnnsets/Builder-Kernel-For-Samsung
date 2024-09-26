@@ -99,7 +99,6 @@ jobs:
       - name: Copy Kernel Image to AnyKernel3
         run: |
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image AnyKernel3/
-          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image.gz AnyKernel3/ || true
 
       - name: Package into AnyKernel3.zip
         run: |
