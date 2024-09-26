@@ -106,12 +106,6 @@ jobs:
           cd AnyKernel3
           zip -r9 ../AnyKernel3-${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}.zip .
 
-      - name: Upload AnyKernel3.zip as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: AnyKernel3-${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
-          path: AnyKernel3-${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}.zip
-
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
@@ -119,6 +113,7 @@ jobs:
             ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image
             ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image.gz
             ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/.config
+            AnyKernel3-${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}.zip
           name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
           tag_name: ${{ github.run_id }}
           body: |
