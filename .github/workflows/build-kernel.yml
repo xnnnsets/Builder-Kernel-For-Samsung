@@ -102,8 +102,8 @@ jobs:
       - name: Package into AnyKernel3.zip
         run: |
           sudo -s << 'EOF'
-          cd AnyKernel3
-          zip -r9 ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3.zip .
+          cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
+          zip -r9 AnyKernel3.zip .
           EOF
 
       - name: Upload to Release
