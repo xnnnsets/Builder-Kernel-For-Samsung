@@ -62,7 +62,6 @@ jobs:
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C toolchain/clang/host/linux-x86/clang-r487747c/
           git clone https://github.com/xnnnsets/AnyKernel3
-          unzip AnyKernel3.zip
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
@@ -85,7 +84,9 @@ jobs:
           chmod +x ./build_kernel.sh
           source build_kernel.sh
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
-          zip -r9 AnyKernel3 . -i AnyKernel3.zip
+          cd AnyKernel3
+          zip -r9 AnyKernel3.zip .
+          mv AnyKernel3.zip ../
           EOF
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
@@ -95,27 +96,11 @@ jobs:
           echo
           ls -al ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/
 
-#      - name: Copy Kernel Image to AnyKernel3
-#        run: |
-#          sudo -s << 'EOF'
-#          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
-#          EOF
-
-#      - name: Package into AnyKernel3.zip
-#        run: |
-#          sudo -s << 'EOF'
-#          cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
-#          zip -r9 AnyKernel3 .
-#          EOF
-
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image.gz
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/.config
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/*.zip
+            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3.zip
           name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
           tag_name: ${{ github.run_id }}
           body: |
