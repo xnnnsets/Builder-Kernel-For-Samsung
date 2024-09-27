@@ -84,6 +84,8 @@ jobs:
           cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
           chmod +x ./build_kernel.sh
           source build_kernel.sh
+          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
+          zip -r9 AnyKernel3 .
           EOF
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
@@ -93,17 +95,18 @@ jobs:
           echo
           ls -al ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/
 
-      - name: Copy Kernel Image to AnyKernel3
-        run: |
-          sudo -s << 'EOF'
-          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
-          EOF
+#      - name: Copy Kernel Image to AnyKernel3
+#        run: |
+#          sudo -s << 'EOF'
+#          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
+#          EOF
 
-      - name: Package into AnyKernel3.zip
-        run: |
-          sudo -s << 'EOF'
-          zip -r9 AnyKernel3 .
-          EOF
+#      - name: Package into AnyKernel3.zip
+#        run: |
+#          sudo -s << 'EOF'
+#          cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
+#          zip -r9 AnyKernel3 .
+#          EOF
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
