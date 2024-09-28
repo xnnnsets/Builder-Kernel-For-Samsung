@@ -61,7 +61,7 @@ jobs:
           mkdir -p /toolchain/clang/host/linux-x86/clang-r487747c
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C toolchain/clang/host/linux-x86/clang-r487747c/
-          git clone https://github.com/xnnnsets/AnyKernel3
+          git clone https://github.com/xnnnsets/AnyKernel3 ${{ github.event.inputs.NAME_FOLDER }}
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
@@ -85,8 +85,8 @@ jobs:
           source build_kernel.sh
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3/
           cd AnyKernel3
-          zip -r9 AnyKernel3.zip .
-          mv AnyKernel3.zip ../
+          zip -r9 ${{ github.event.inputs.NAME_FOLDER }} .
+          mv ${{ github.event.inputs.NAME_FOLDER }} ../
           EOF
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
@@ -100,7 +100,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/AnyKernel3.zip
+            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.NAME_FOLDER }}.zip
+            ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/.config
           name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
           tag_name: ${{ github.run_id }}
           body: |
