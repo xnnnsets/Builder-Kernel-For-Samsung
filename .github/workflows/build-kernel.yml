@@ -86,7 +86,7 @@ jobs:
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
           cd ${{ github.event.inputs.DEVICE_NAME }}
           zip -r9 ${{ github.event.inputs.DEVICE_NAME }} .
-          mv ${{ github.event.inputs.DEVICE_NAME }} ../
+          mv ${{ github.event.inputs.DEVICE_NAME }}.zip ../
           EOF
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
