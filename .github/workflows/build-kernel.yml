@@ -56,19 +56,27 @@ jobs:
         with:
           swap-size-gb: 12
 
-      - name: Clone device tree
+      - name: Clone device tree and prepare toolchain
         run: |
           cd ${{ steps.pwd.outputs.workspace-folder }}
           sudo -s << 'EOF'
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }}
           cd ${{ github.event.inputs.NAME_FOLDER }}
-          mkdir -p /toolchain/clang/host/linux-x86/clang-r487747c
-          mkdir -p /PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+          
+          # Prepare directories for toolchain
+          mkdir -p toolchain/clang/host/linux-x86/clang-r487747c
+          mkdir -p PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+          
+          # Download and extract GCC toolchain
           wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/aml_tz2_305400100.tar.gz
-          tar -xvzf aml_tz2_305400100.tar.gz -C /PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
+          tar -xvzf aml_tz2_305400100.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
+          
+          # Download and extract Clang toolchain
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C toolchain/clang/host/linux-x86/clang-r487747c/
-          git clone ${{github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
+          
+          # Clone AnyKernel repository
+          git clone ${{ github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
