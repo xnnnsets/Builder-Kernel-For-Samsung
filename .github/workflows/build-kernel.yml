@@ -68,8 +68,8 @@ jobs:
           mkdir -p PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
           
           # Download and extract GCC toolchain
-          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android-msm-barbet-4.19-android12-qpr1/bin.tar.gz
-          tar -xvzf bin.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
+          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/brillo-m9-dev.tar.gz
+          tar -xvzf brillo-m9-dev.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
           
           # Download and extract Clang toolchain
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
