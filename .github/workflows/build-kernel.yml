@@ -19,7 +19,11 @@ on:
         description: 'DEVICE_NAME'
         required: true
         default: 'samsung_a34x'
-
+      ANY_KERNEL:
+        description: 'LINK_ANY_KERNEL'
+        requered: true
+        default: 'https://github.com/xnnnsets/AnyKernel3'
+        
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -59,9 +63,12 @@ jobs:
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }}
           cd ${{ github.event.inputs.NAME_FOLDER }}
           mkdir -p /toolchain/clang/host/linux-x86/clang-r487747c
+          mkdir -p /PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/acb2418543b4fc109c51e95acf566cb42f7a9912.tar.gz
+          tar -xvzf acb2418543b4fc109c51e95acf566cb42f7a9912.tar.gz -C /PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
           tar -xvzf clang-r487747c.tar.gz -C toolchain/clang/host/linux-x86/clang-r487747c/
-          git clone https://github.com/xnnnsets/AnyKernel3 ${{ github.event.inputs.DEVICE_NAME }}
+          git clone ${{github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
@@ -84,6 +91,7 @@ jobs:
           chmod +x ./build_kernel.sh
           source build_kernel.sh
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
+          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
           cd ${{ github.event.inputs.DEVICE_NAME }}
           zip -r9 ${{ github.event.inputs.DEVICE_NAME }} .
           mv ${{ github.event.inputs.DEVICE_NAME }}.zip ../
@@ -93,6 +101,7 @@ jobs:
       - name: Check the output directory before uploading
         run: |
           ls -al ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/
+          ls -al ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm/boot/
           ls -al ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/
 
       - name: List Files after build
