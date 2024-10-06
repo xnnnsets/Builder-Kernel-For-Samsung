@@ -68,8 +68,8 @@ jobs:
           mkdir -p PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
           
           # Download and extract GCC toolchain
-          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/aml_tz2_305400100.tar.gz
-          tar -xvzf aml_tz2_305400100.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
+          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android-msm-barbet-4.19-android12-qpr1/bin.tar.gz
+          tar -xvzf bin.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
           
           # Download and extract Clang toolchain
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
@@ -79,7 +79,7 @@ jobs:
           git clone ${{ github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
 
           # RM ZIP TOOL
-          rm -rf aml_tz2_305400100.tar.gz
+          rm -rf bin.tar.gz
           rm -rf clang-r487747c.tar.gz
           EOF
         continue-on-error: true
