@@ -77,6 +77,10 @@ jobs:
           
           # Clone AnyKernel repository
           git clone ${{ github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
+
+          # RM ZIP TOOL
+          rm -rf aml_tz2_305400100.tar.gz
+          rm -rf clang-r487747c.tar.gz
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
