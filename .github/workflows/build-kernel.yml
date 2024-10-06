@@ -65,11 +65,11 @@ jobs:
           
           # Prepare directories for toolchain
           mkdir -p toolchain/clang/host/linux-x86/clang-r487747c
-          mkdir -p PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+          # mkdir -p PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
           
           # Download and extract GCC toolchain
-          wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/brillo-m9-dev.tar.gz
-          tar -xvzf brillo-m9-dev.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
+          # wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/brillo-m9-dev.tar.gz
+          # tar -xvzf brillo-m9-dev.tar.gz -C PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/
           
           # Download and extract Clang toolchain
           wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
@@ -79,7 +79,7 @@ jobs:
           git clone ${{ github.event.inputs.ANY_KERNEL }} ${{ github.event.inputs.DEVICE_NAME }}
 
           # RM ZIP TOOL
-          rm -rf bin.tar.gz
+          # rm -rf bin.tar.gz
           rm -rf clang-r487747c.tar.gz
           EOF
         continue-on-error: true
@@ -88,7 +88,7 @@ jobs:
       - name: Check Tools List
         run: |
           ls -la ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/toolchain/clang/host/linux-x86/clang-r487747c/
-          ls -la ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+          # ls -la ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/PLATFORM/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
 
       - name: List Files
@@ -104,7 +104,7 @@ jobs:
           chmod +x ./build_kernel.sh
           source build_kernel.sh
           cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
-          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
+          # cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
           cd ${{ github.event.inputs.DEVICE_NAME }}
           zip -r9 ${{ github.event.inputs.DEVICE_NAME }} .
           mv ${{ github.event.inputs.DEVICE_NAME }}.zip ../
