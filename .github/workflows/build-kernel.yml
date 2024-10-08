@@ -21,8 +21,12 @@ on:
         default: 'samsung_a34x'
       ANY_KERNEL:
         description: 'LINK_ANY_KERNEL'
-        requered: true
+        required: true
         default: 'https://github.com/xnnnsets/AnyKernel3'
+      ARCH:
+        description: 'Architecture (arm64 or arm)'
+        required: true
+        default: 'arm64'
         
 jobs:
   build:
@@ -103,8 +107,16 @@ jobs:
           cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
           chmod +x ./build_kernel.sh
           source build_kernel.sh
-          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
-          cp ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/out/arch/arm/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
+          
+          # Copy Image based on architecture
+          if [ "${{ github.event.inputs.ARCH }}" == "arm64" ]; then
+              cp out/arch/arm64/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
+          elif [ "${{ github.event.inputs.ARCH }}" == "arm" ]; then
+              cp out/arch/arm/boot/Image ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}/${{ github.event.inputs.DEVICE_NAME }}/
+          else
+              echo "Unsupported architecture specified"
+          fi
+          
           cd ${{ github.event.inputs.DEVICE_NAME }}
           zip -r9 ${{ github.event.inputs.DEVICE_NAME }} .
           mv ${{ github.event.inputs.DEVICE_NAME }}.zip ../
