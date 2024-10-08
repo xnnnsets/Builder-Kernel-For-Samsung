@@ -4,6 +4,6 @@
 
 ***
 ***
-* tested in source kernel [a34x](https://github.com/xnnnsets/android_kernel_samsung_a34x)
-* tested in source kernel [A01CORE](https://github.com/xnnnsets/android_kernel_samsung_a01core)
+* tested in source kernel [A34X-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a34x)
+* tested in source kernel [A01CORE-ARM](https://github.com/xnnnsets/android_kernel_samsung_a01core)
 ****
