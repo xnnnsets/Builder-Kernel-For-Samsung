@@ -1,10 +1,9 @@
 
-* use clang-r487747c
+* available toolchain/clang/host/linux-x86/clang-r487747c
+* available toolchain/gcc/linux-x86/arm/arm-linux-androideabi-4.9
 
 ***
-* builder tutorial with [HERE](https://github.com/Fede2782/android_kernel_samsung_a34x_old/wiki/How-to-build)
 ***
 * tested in source kernel [a34x](https://github.com/xnnnsets/android_kernel_samsung_a34x)
-***
-* [Fed2782](https://github.com/Fede2782)
+* tested in source kernel [A01CORE](https://github.com/xnnnsets/android_kernel_samsung_a01core)
 ****
