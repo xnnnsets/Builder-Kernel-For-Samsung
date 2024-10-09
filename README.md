@@ -34,14 +34,12 @@ tested in source kernel [A10S-ARM64](https://github.com/xnnnsets/android_kernel_
 | `NAME_FOLDER` | Name Folder | kernel_a34x |
 | `DEVICE_NAME` | Device Name | samsung_a34x |
 | `LINK_ANY_KERNEL` | Link Zip Anykernel3 | https://github.com/xnnnsets/AnyKernel3 |
-| `DEVICE_NAME` | Model name | I003D |
 | `Architecture` | Architecture | ARM64 |
-
 -----
 
 ## How to use
 ```
-For example, your username is: JohnSmith
+HOW TO USE
 ```
 #### 1. Click 'Fork' in the upper right corner of this repository
 ![image](https://user-images.githubusercontent.com/37921907/177914706-c92476c5-7e14-4fb3-be94-0c8a11dae874.png)
