@@ -29,15 +29,13 @@ tested in source kernel [A10S-ARM64](https://github.com/xnnnsets/android_kernel_
 
 | Name | Description | Example |
 | ------------ | -------------------- | ------------ |
-| `DEVICE_TREE_URL` | Device address | [https://github.com/TeamWin/android_device_asus_I003D](https://github.com/xnnnsets/android_kernel_samsung_a34x) |
-| `DEVICE_TREE_BRANCH` | Device branch | android-12.1 |
-| `DEVICE_PATH` | Device location | device/asus/I003D |
-| `COMMON_TREE_URL` | Common tree address | https://github.com/TeamWin/android_device_asus_sm8250-common |
-| `COMMON_PATH` | Common tree location | device/asus/sm8250-common |
+| `DEVICE_TREE_URL` | Kernel Source | [https://github.com/xnnnsets/android_kernel_samsung_a34x] |
+| `DEVICE_TREE_BRANCH` | Kernel branch | muach |
+| `NAME_FOLDER` | Name Folder | kernel_a34x |
+| `DEVICE_NAME` | Device Name | samsung_a34x |
+| `LINK_ANY_KERNEL` | Link Zip Anykernel3 | https://github.com/xnnnsets/AnyKernel3 |
 | `DEVICE_NAME` | Model name | I003D |
-| `MAKEFILE_NAME` | Makefile name | twrp_I003D |
-| `BUILD_TARGET` | Build Target Partition (boot/recovery/vendorboot) | recovery |
-
+| `Architecture` | Architecture | ARM64 |
 -----
 
 ## How to use
