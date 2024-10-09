@@ -3,7 +3,7 @@
 - Support A34X, A01CORE, A10S
 
 ---
-
+### LIST SOURCE SUCCESS TO BUILD
 * source kernel success to build [A34X-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a34x)
 
 * source kernel success to build [A01CORE-ARM](https://github.com/xnnnsets/android_kernel_samsung_a01core)
@@ -34,6 +34,20 @@
 - All contributors
 
 ## How to use
-```
-FOR ADD DEVICE ANOTHER PULL REQUEST
-```
+---
+
+* Change DEVICE_TREE_URL Kernel List in buttom
+* Change DEVICE_TREE_BRANCH
+* Opsional Change NAME_FOLDER
+* Opsional Change DEVICE_NAME
+* Opsional Change LINK_ANY_KERNEL
+* Change Architecture ARM Or ARM64
+
+
+---
+
+
+
+
+## FOR ADD DEVICE ANOTHER PULL REQUEST
+
