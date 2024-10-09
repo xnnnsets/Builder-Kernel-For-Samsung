@@ -4,11 +4,11 @@
 
 ---
 
-* tested in source kernel [A34X-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a34x)
+* source kernel success to build [A34X-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a34x)
 
-* tested in source kernel [A01CORE-ARM](https://github.com/xnnnsets/android_kernel_samsung_a01core)
+* source kernel success to build [A01CORE-ARM](https://github.com/xnnnsets/android_kernel_samsung_a01core)
 
-* tested in source kernel [A10S-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a10s)
+* source kernel success to build [A10S-ARM64](https://github.com/xnnnsets/android_kernel_samsung_a10s)
 
 ---
 
@@ -35,5 +35,5 @@
 
 ## How to use
 ```
-HOW TO USE ??
+FOR ADD DEVICE ANOTHER PULL REQUEST
 ```
