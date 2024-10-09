@@ -74,7 +74,8 @@ jobs:
           
           # Gcc ARM64
           wget -nc "https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2021.11-1.tar.bz2"
-          tar -xvzf aarch64--glibc--stable-2021.11-1.tar.bz2 -C toolchain/gcc/linux-x86/aarch64/aarch64-buildroot-linux-android-4.9/
+          tar -xvjf aarch64--glibc--stable-2021.11-1.tar.bz2
+          cp -r aarch64--glibc--stable-2021.11-1/* toolchain/gcc/linux-x86/aarch64/aarch64-buildroot-linux-android-4.9/
           
           # Download and extract GCC ARM toolchain
           wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android-msm-barbet-4.19-android12-qpr1.tar.gz
@@ -90,6 +91,7 @@ jobs:
           # RM ZIP TOOL
           rm -rf android-msm-barbet-4.19-android12-qpr1.tar.gz
           rm -rf clang-r487747c.tar.gz
+          rm -rf aarch64--glibc--stable-2021.11-1
           rm -rf aarch64--glibc--stable-2021.11-1.tar.bz2
           EOF
         continue-on-error: true
