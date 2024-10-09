@@ -36,6 +36,7 @@ tested in source kernel [A10S-ARM64](https://github.com/xnnnsets/android_kernel_
 | `LINK_ANY_KERNEL` | Link Zip Anykernel3 | https://github.com/xnnnsets/AnyKernel3 |
 | `DEVICE_NAME` | Model name | I003D |
 | `Architecture` | Architecture | ARM64 |
+
 -----
 
 ## How to use
