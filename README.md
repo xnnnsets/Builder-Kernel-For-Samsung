@@ -14,7 +14,7 @@ tested in source kernel [A10S-ARM64](https://github.com/xnnnsets/android_kernel_
 
 | Name | Description | Example |
 | ------------ | -------------------- | ------------ |
-| `DEVICE_TREE_URL` | Kernel Source | [https://github.com/xnnnsets/android_kernel_samsung_a34x] |
+| `DEVICE_TREE_URL` | Kernel Source | https://github.com/xnnnsets/android_kernel_samsung_a34x |
 | `DEVICE_TREE_BRANCH` | Kernel branch | muach |
 | `NAME_FOLDER` | Name Folder | kernel_a34x |
 | `DEVICE_NAME` | Device Name | samsung_a34x |
