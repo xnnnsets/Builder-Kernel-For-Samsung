@@ -21,7 +21,7 @@
 | `NAME_FOLDER` | Name Folder | kernel_a34x |
 | `DEVICE_NAME` | Device Name | samsung_a34x |
 | `LINK_ANY_KERNEL` | Link Zip Anykernel3 | https://github.com/xnnnsets/AnyKernel3 |
-| `Architecture` | Architecture | ARM64 |
+| `Architecture` | Architecture | ARM64 | SELECT KERNEL architecture 'ARM' OR 'ARM64'
 -----
 
 ---
