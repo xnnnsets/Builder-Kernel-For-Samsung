@@ -38,8 +38,8 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v3
 
-      - name: Cleanup
-        uses: rokibhasansagar/slimhub_actions@main
+#      - name: Cleanup
+#        uses: rokibhasansagar/slimhub_actions@main
 
       - name: Initialize workspace
         run: |
@@ -69,13 +69,17 @@ jobs:
           
           # Prepare directories for toolchain
           mkdir -p toolchain/clang/host/linux-x86/clang-r487747c
+          mkdir -p toolchain/clang/host/linux-x86/clang-r536225
           mkdir -p toolchain/gcc/linux-x86/arm/arm-linux-androideabi-4.9
           mkdir -p toolchain/gcc/linux-x86/aarch64/aarch64-buildroot-linux-android-4.9
+
+          # Download and extract Clang toolchain
+          wget -nc "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r536225.tar.gz"
+          tar -xvzf clang-r536225.tar.gz -C toolchain/clang/host/linux-x86/clang-clang-r536225/
           
           # Gcc ARM64
           wget -nc "https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2021.11-1.tar.bz2"
-          tar -xvjf aarch64--glibc--stable-2021.11-1.tar.bz2
-          cp -r aarch64--glibc--stable-2021.11-1/* toolchain/gcc/linux-x86/aarch64/aarch64-buildroot-linux-android-4.9/
+          tar -xvjf aarch64--glibc--stable-2021.11-1.tar.bz2 -C toolchain/gcc/linux-x86/aarch64/aarch64-buildroot-linux-android-4.9/
           
           # Download and extract GCC ARM toolchain
           wget https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android-msm-barbet-4.19-android12-qpr1.tar.gz
@@ -93,6 +97,7 @@ jobs:
           rm -rf clang-r487747c.tar.gz
           rm -rf aarch64--glibc--stable-2021.11-1
           rm -rf aarch64--glibc--stable-2021.11-1.tar.bz2
+          rm rf clang-r536225.tar.gz
           EOF
         continue-on-error: true
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
