@@ -75,7 +75,7 @@ jobs:
 
           # Download and extract Clang toolchain
           wget -nc "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r536225.tar.gz"
-          tar -xvzf clang-r536225.tar.gz -C toolchain/clang/host/linux-x86/clang-clang-r536225/
+          tar -xvzf clang-r536225.tar.gz -C toolchain/clang/host/linux-x86/clang-r536225/
           
           # Gcc ARM64
           wget -nc "https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2021.11-1.tar.bz2"
