@@ -10,7 +10,7 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'muach'
+        default: 'stable'
       NAME_FOLDER:
         description: 'NAME_FOLDER'
         required: true
