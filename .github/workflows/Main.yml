@@ -64,7 +64,7 @@ jobs:
         run: |
           cd ${{ steps.pwd.outputs.workspace-folder }}
           sudo -s << 'EOF'
-          git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }}
+          git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.NAME_FOLDER }} --depth 1
           cd ${{ github.event.inputs.NAME_FOLDER }}
           
           # Prepare directories for toolchain
