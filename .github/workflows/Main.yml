@@ -122,8 +122,6 @@ jobs:
           sudo -s << 'EOF'
           cd ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.NAME_FOLDER }}
           chmod +x ./build_kernel.sh
-          export KBUILD_BUILD_USER="xnnnsets"
-          export KBUILD_BUILD_HOST="YourDick"
           source build_kernel.sh
           
           # Copy Image based on architecture
